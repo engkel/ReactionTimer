@@ -1,0 +1,41 @@
+import java.util.Scanner;
+
+public class Timer {
+    public static void main(String[] args) throws InterruptedException {
+
+        System.out.println("Reaction Timer\nWhen you are ready to measure you reaction time, press y and enter to begin " +
+                "countdown. Press a key and press enter as quickly as possible :");
+        Scanner l = new Scanner(System.in);
+        String ready;
+        ready = l.nextLine();
+        boolean done = false;
+
+        while(ready.equals("y"))
+        {
+            while (!done) {
+                System.out.println("3");
+                Thread.sleep(1000);
+                System.out.println("2");
+                Thread.sleep(1000);
+                System.out.println("1");
+                Thread.sleep(1000);
+                System.out.println("GO");
+                double startTime = System.currentTimeMillis();
+                Scanner s = new Scanner(System.in);
+                s.nextLine();
+                double endTime = System.currentTimeMillis();
+                double reactionTime = endTime - startTime;
+                done = true;
+                System.out.println("Your Reaction time in milliseconds: " + reactionTime + "ms\n");
+                System.out.printf("Your Reaction time in seconds: %1.3f", + reactionTime / 1000);
+                System.out.print("s\n");
+
+                //to stop the player from accepting entered values keys before countdown is finished
+                if(reactionTime<=1){
+                    System.out.println("You cheated! Try again");
+                    done = false;
+                }
+            }
+        }
+    }
+}
